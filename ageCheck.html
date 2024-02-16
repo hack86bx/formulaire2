@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Index</title>
+</head>
+<body>
+ 
+    <div class="form2">
+        <div id="age-form">
+            <form id="ageInputForm">
+                <input class="agebouton"type="number" id="ageInput" placeholder="                Votre âge" required>
+                <button class="agebouton"type="button" onclick="checkAge()">Vérifier âge</button>
+            </form>
+            <div id="result"></div>
+        </div>
+   
+        <script>
+            function checkAge() {
+                var ageInput = document.getElementById('ageInput').value;
+                var resultDiv = document.getElementById('result');
+               
+                if (ageInput >= 20) {
+                    resultDiv.textContent = "Vous avez plus de 20";
+                    resultDiv.style.color = "green";
+                    setTimeout(function () {
+                        window.location.href = "index.html";
+                    }, 1000);
+                } else {
+                    resultDiv.textContent = "Vous n'avez pas l'âge requis.";
+                    resultDiv.style.color = "red";
+                }
+   
+                resultDiv.style.display = "block";
+            }
+        </script>
+    </body>
+</html>

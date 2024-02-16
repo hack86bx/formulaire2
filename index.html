@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+
+    <div class="wrapper">
+        <div class="login_box">
+                <div class="login_header">
+                    <span>Name</span>
+                </div>           
+
+                <form id="myForm">
+                    <div class="input_box">
+                        <input type="text" id="leprenom" class="input-field" required>
+                        <label for="user" class="label">Password</label>
+                        <i class="bx bx-user icon"></i>
+                    </div>
+            
+                    <div class="input_box">
+                        <input type="password" id="password" class="input-field" required>
+                        <i class="bx bx-lock-alt icon"></i>
+                    </div>
+
+                    <div class="remember-forgot">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">remember-me</label>
+                        </div>
+
+                        <div class="forgot">
+                            <a href="#">Forgot password</a>
+                        </div>
+                    </div>
+
+                    <div class="input_box">
+                        <input type="submit" id="subButton" class="input-submit" value="Login">
+                    </div>
+            
+                    <div class="register">
+                        <span>Don't have an account ? <a href="#">Register</a></span>
+                    </div>
+                </form>
+        </div>
+    </div>
+
+    <footer>
+        <h3 id="mdpErreur"></h3>
+        <h3 id="result"></h3>
+    </footer>
+
+<script>
+ 
+    const myForm = document.getElementById("myForm");
+    const subButton = document.getElementById("subButton");
+    const mdp = document.getElementById("mdpErreur");
+    const resultDiv = document.getElementById('result');
+    const hideShow = document.querySelector("#hide");
+             
+    myForm.addEventListener('submit', function(event) {                    
+        event.preventDefault();
+        validPassword();
+    });
+ 
+    hideShow.addEventListener("click", function () {
+        const password = document.getElementById("password");
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+        const butType = hideShow.textContent === "Show" ? "Show" : "Hide";
+        hideShow.textContent = butType;
+    });
+
+    function validPassword(){
+        const password = document.getElementById("password").value;      
+        const name = document.getElementById("leprenom").value;
+ 
+        if (password.length < 10) {      
+            mdp.textContent = "Trop Court";
+        }
+        else if(/[A-Z]/.test(password) === false){
+            mdp.textContent = "Il manque une Majuscule";
+        }
+        else if(/\d/.test(password) === false){
+            mdp.textContent = "Il manque un chiffre entre 0 et 9";
+        }
+        else if ((/[!@#$%^,&;*()_+]/.test(password)) === false){
+            mdp.textContent = "Il manque un symbole";
+        }
+        else if (password.length >= 10 && /[A-Z]/.test(password) && /\d/.test(password) && ((/[!@#$%^,&;*()_+]/.test(password)))) {
+            resultDiv.textContent = "Bienvenue"+" "+name;
+            resultDiv.style.color = "green";
+            setTimeout(function () {
+                window.location.href = "https://2023.webdev-cf2m.be/Emrah/prefowebsite/";
+            }, 2000);
+        }
+    }           
+</script>
+</body>
+</html>
